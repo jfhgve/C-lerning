@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <time.h>
+struct list{
+    int num;
+    list *ptr, *next;
+};
+int main() {
+    list *first,*q,*p;
+    int i, n;
+    srand( (unsigned)time( NULL ) );
+    first=new list;
+    first->ptr=NULL;
+    first->num=rand()%1000;
+    puts("Input dimension of list:");
+    scanf("%d", &n);
+    p=first;
+        for (i=1;i<n;i++) {
+            q = new list;
+            q->num = rand()%1000;
+            q->ptr = NULL;
+            p->ptr = q;
+            p = q;
+        }
+    puts("List:");
+    q=first;
+        while(q != NULL) {
+            printf("%5d",q->num);
+            q=q->ptr;
+        }
+    printf("\nInput value for deleting process:");
+    scanf("%d", &n);
+        while((first != NULL)&&((first->num%n) == 0)) {
+            p=first;
+            first=first->ptr;
+            delete(p);
+        }
+        if (first == NULL) puts("List is empty.");
+        else {
+            p=first;
+            q=first;
+        do {
+            if (q->num%n == 0) {
+                p->ptr = q->ptr;
+                delete(q);
+                q = p->ptr; }
+            else {
+                p=q; q=q->ptr;
+            }
+            } while (q != NULL);
+            }
+        puts("New list:");
+        q = first;
+        while(q != NULL) {
+            printf("%5d", q->num);
+            q = q->ptr; }
+            printf("\n");
+            system ("pause");
+            q = first;
+        while (q!=NULL) {
+            p = q;
+            q = q->next;
+            delete p;
+        }
+return 0;
+}
