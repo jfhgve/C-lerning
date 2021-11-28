@@ -1,0 +1,57 @@
+//#include "stdafx.h"
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+  struct lstr{
+       char name[22];
+       lstr *ptr;
+  };
+int main() {
+    lstr *first, *n, *p, *q, a;
+    bool flag;
+    first=new lstr;
+    first->ptr=NULL;
+      puts("Input string or empty string:");
+    gets(first->name);
+    gets(a.name);
+        while (a.name[0]!='\0') {
+              n = new lstr;
+              strcpy(n->name,a.name);
+                  if(strcmp(n->name,first->name)<0)
+                  {
+                    n->ptr=first;
+                    first=n;
+                  }
+                  else {
+                    flag=0;
+                    p=first;
+                    q=first;
+                        while((q!=NULL)&&!flag)
+                        {
+                            if(strcmp(n->name,q->name)<0)
+                             {
+                              n->ptr = p->ptr;
+                              p->ptr = n;
+                              flag=1;
+                             }
+                            else {
+                              p = q;
+                              q = q->ptr; 
+                                  }
+                          }
+                        }
+      if(!flag) 
+      {
+        n->ptr = NULL;
+        p->ptr = n;
+      }
+      gets(a.name);
+          }
+q = first;
+while(q!=NULL){
+puts(q->name);
+p = q;
+q=q->ptr;
+delete p;
+}
+}
